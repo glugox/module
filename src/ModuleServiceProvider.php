@@ -53,4 +53,38 @@ class ModuleServiceProvider extends ServiceProvider
 
         return $module;
     }
+
+    /**
+     * Register the route definitions exposed by the given module.
+     */
+    public function registerModuleRoutes(string $path): void
+    {
+        $this->loadRoutesFrom($path);
+    }
+
+    /**
+     * Register database migrations exposed by the given module.
+     */
+    public function registerModuleMigrations(string $path): void
+    {
+        $this->loadMigrationsFrom($path);
+    }
+
+    /**
+     * Register the view namespace exposed by the given module.
+     */
+    public function registerModuleViews(string $path, string $namespace): void
+    {
+        $this->loadViewsFrom($path, $namespace);
+    }
+
+    /**
+     * Register publishable assets exposed by the given module.
+     */
+    public function registerModuleAssets(string $path, string $moduleId): void
+    {
+        $this->publishes([
+            $path => public_path('vendor/'.$moduleId),
+        ], ['module-assets', $moduleId.'::assets']);
+    }
 }

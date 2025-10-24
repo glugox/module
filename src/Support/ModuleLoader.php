@@ -8,13 +8,13 @@ use Glugox\Module\Contracts\HasRoutes;
 use Glugox\Module\Contracts\HasViews;
 use Glugox\Module\Contracts\ModuleContract;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\ServiceProvider;
+use Glugox\Module\ModuleServiceProvider;
 
 class ModuleLoader
 {
     public function __construct(
         protected readonly Application $app,
-        protected readonly ServiceProvider $provider,
+        protected readonly ModuleServiceProvider $provider,
     ) {
     }
 
@@ -50,7 +50,7 @@ class ModuleLoader
             return;
         }
 
-        $this->provider->loadRoutesFrom($path);
+        $this->provider->registerModuleRoutes($path);
     }
 
     protected function registerMigrations(ModuleContract $module): void
@@ -65,7 +65,7 @@ class ModuleLoader
             return;
         }
 
-        $this->provider->loadMigrationsFrom($path);
+        $this->provider->registerModuleMigrations($path);
     }
 
     protected function registerViews(ModuleContract $module): void
@@ -82,7 +82,7 @@ class ModuleLoader
 
         $namespace = $module->namespace();
 
-        $this->provider->loadViewsFrom($path, $namespace);
+        $this->provider->registerModuleViews($path, $namespace);
     }
 
     protected function registerAssets(ModuleContract $module): void
@@ -97,8 +97,6 @@ class ModuleLoader
             return;
         }
 
-        $this->provider->publishes([
-            $path => public_path('vendor/'.$module->id()),
-        ], ['module-assets', $module->id().'::assets']);
+        $this->provider->registerModuleAssets($path, $module->id());
     }
 }
