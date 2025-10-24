@@ -18,3 +18,4 @@ This Agents.md file provides comprehensive guidance for OpenAI Codex and other A
 - Ensure that all new code is tested in a local development environment before deployment.
 - Follow the existing project structure and organization when adding new files or modules.
 - Use version control best practices, including meaningful commit messages and branching strategies.
+- Try as much as possible to add types to all functions, variables, and return values, so PhpStan and can better understand the code. Analyze can be done via command `vendor/bin/phpstan analyse`
