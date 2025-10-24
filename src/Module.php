@@ -62,4 +62,9 @@ abstract class Module implements ModuleContract
             capabilities: $this->capabilities(),
         );
     }
+
+    public function toArray(): array
+    {
+        return $this->manifest()->toArray();
+    }
 }
