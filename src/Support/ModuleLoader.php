@@ -51,6 +51,9 @@ class ModuleLoader
         }
 
         $this->provider->registerModuleRoutes($path);
+
+        $this->app['router']->getRoutes()->refreshNameLookups();
+        $this->app['router']->getRoutes()->refreshActionLookups();
     }
 
     protected function registerMigrations(ModuleContract $module): void
