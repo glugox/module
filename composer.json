@@ -51,6 +51,9 @@
   ],
   "extra": {
     "laravel": {
+      "providers": [
+        "Glugox\\Module\\ModuleServiceProvider"
+      ],
       "dont-discover": []
     }
   },

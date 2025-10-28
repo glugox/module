@@ -12,20 +12,20 @@ test('module manifest exposes metadata', function () {
         capabilities: ['http:web', 'http:api'],
     );
 
-    expect($manifest->id())->toBe('vendor/example');
-    expect($manifest->name())->toBe('Example');
-    expect($manifest->namespace())->toBe('Vendor\\Example');
-    expect($manifest->description())->toBe('Demo module');
-    expect($manifest->version())->toBe('1.2.3');
-    expect($manifest->capabilities())->toBe(['http:web', 'http:api']);
-    expect($manifest->toArray())->toBe([
-        'id' => 'vendor/example',
-        'name' => 'Example',
-        'namespace' => 'Vendor\\Example',
-        'description' => 'Demo module',
-        'version' => '1.2.3',
-        'capabilities' => ['http:web', 'http:api'],
-    ]);
+    expect($manifest->id())->toBe('vendor/example')
+        ->and($manifest->name())->toBe('Example')
+        ->and($manifest->namespace())->toBe('Vendor\\Example')
+        ->and($manifest->description())->toBe('Demo module')
+        ->and($manifest->version())->toBe('1.2.3')
+        ->and($manifest->capabilities())->toBe(['http:web', 'http:api'])
+        ->and($manifest->toArray())->toBe([
+            'id' => 'vendor/example',
+            'name' => 'Example',
+            'namespace' => 'Vendor\\Example',
+            'description' => 'Demo module',
+            'version' => '1.2.3',
+            'capabilities' => ['http:web', 'http:api'],
+        ]);
 });
 
 test('module manifest can be created from array payload', function () {
