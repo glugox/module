@@ -1,6 +1,5 @@
 {
   "name": "glugox/module",
-  "version": "1.0.0",
   "description": "Module abstractions that all modules use",
   "keywords": [
     "laravel",
